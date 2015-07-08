@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.digitalpebble.behemoth</groupId>
+		<artifactId>behemoth-parent</artifactId>
+		<version>1.2-SNAPSHOT</version>
+	</parent>
+	<!--
+	<artifactId>behemoth-io</artifactId>
+	<version>1.2-SNAPSHOT</version>
+	-->
+	<artifactId>lemurproject</artifactId>
+	<version>1.0</version>
+
+	<packaging>jar</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>job</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				 <plugins>
+					<plugin>
+						<artifactId>maven-jar-plugin</artifactId>
+						<configuration>
+							<archive>
+								<manifest>
+									<mainClass>edu.cmu.lemurproject.Main</mainClass>
+								</manifest>
+							</archive>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

@@ -1,0 +1,5 @@
+https://github.com/DigitalPebble/behemoth/tree/master/io/src/main/java/edu/cmu/lemurproject
+http://grepcode.com/file/repo1.maven.org/maven2/com.digitalpebble.behemoth/behemoth-io/1.1/edu/cmu/lemurproject/WarcRecord.java?av=f
+
+
+Padrão utilizado pela ClueWeb
