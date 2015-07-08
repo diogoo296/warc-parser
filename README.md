@@ -2,8 +2,8 @@
 Parses WARC files using lemurproject with few modifications
 
 # Dependências
-- maven;
-- java;
+- Apache Maven 2.2.1+;
+- Java 1.6.0+;
 
 # Utilizando o Maven
 
