@@ -13,6 +13,18 @@ public class CustomWarcHTMLResponseRecord extends WarcHTMLResponseRecord {
 		super(o);
 	}
 
+	public boolean isOrgBr() {
+		Pattern pattern = Pattern.compile("(\\S)*.gov.br(\\S)*");
+		Matcher matcher = pattern.matcher(getTargetURI());
+		return matcher.find();
+	}
+
+	public boolean isYoutube() {
+		Pattern pattern = Pattern.compile("(\\S)*.youtube.com(\\S)*");
+		Matcher matcher = pattern.matcher(getTargetURI());
+		return matcher.find();
+	}
+
 	public String getWarcHeader() {
 		return getRawRecord().getHeaderString();
 	}

@@ -18,7 +18,7 @@ public class WarcHelper {
 		GZIPInputStream gzInputStream = new GZIPInputStream(new FileInputStream(inputWarcFile));
 		DataInputStream inStream = new DataInputStream(gzInputStream);
 
-		System.out.println( "Reading warc records..." );
+		System.out.println("Reading warc records...");
 		System.out.println();
 
 		WarcRecord thisWarcRecord;
@@ -26,7 +26,10 @@ public class WarcHelper {
 		while ((thisWarcRecord = WarcRecord.readNextWarcRecord(inStream)) != null) {
 			if (thisWarcRecord.getHeaderRecordType().equals("response")) {
 //				warcResponseList.add(new WarcDocument(new CustomWarcHTMLResponseRecord(thisWarcRecord)));
-				System.out.println( new WarcDocument(new CustomWarcHTMLResponseRecord(thisWarcRecord)) );
+				CustomWarcHTMLResponseRecord record = new CustomWarcHTMLResponseRecord(thisWarcRecord);
+//				if( !record.isOrgBr() && !record.isYoutube() ) {
+				System.out.println(new WarcDocument(record));
+//				}
 			}
 		}
 
