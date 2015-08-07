@@ -11,7 +11,7 @@ public class WarcDocument {
 	public WarcDocument(CustomWarcHTMLResponseRecord record) {
 		this.id = record.getTargetTrecID();
 		this.url = record.getTargetURI();
-//		this.content = record.getContent();
+		this.content = record.getContent();
 		this.documentHeader = record.getDocumentHeader();
 		this.warcHeader = record.getWarcHeader();
 		this.title = record.getTitle();
@@ -21,13 +21,37 @@ public class WarcDocument {
 	public String toString() {
 		String doc = "";
 
-//		doc += "[ID] " + id + "\n";
+		doc += "[ID] " + id + "\n";
 		doc += "[URL] "	+ url + "\n";
-//		doc += "[CONTENT] " + content + "\n";
-//		doc += "[DOC HEADER] " + documentHeader + "\n";
-//		doc += "[WARC HEADER] " + warcHeader + "\n";
+		doc += "[CONTENT] " + content + "\n";
+		doc += "[DOC HEADER] " + documentHeader + "\n";
+		doc += "[WARC HEADER] " + warcHeader + "\n";
 		doc += "[TITLE] " + title + "\n";
 
 		return doc;
+	}
+
+	public String getID() {
+		return id;
+	}
+
+	public String getURL() {
+		return url;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public String getDocHeader() {
+		return documentHeader;
+	}
+
+	public String getWarcHeader() {
+		return warcHeader;
+	}
+
+	public String getTitle() {
+		return title;
 	}
 }

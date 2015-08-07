@@ -9,6 +9,8 @@ public class CustomWarcHTMLResponseRecord extends WarcHTMLResponseRecord {
 	private static Pattern DOCUMENT_HEADER = Pattern.compile("^(.+?)(?:\\s+)?([\\s\\S]+?)\r?\n(?=\r?\n)", Pattern.UNIX_LINES);
 	private static Pattern HTML_CONTENT = Pattern.compile("(?<=((?<!.)[\r\n]))(?s).*", Pattern.UNIX_LINES);
 
+	private final int MAX_CONTENT_LENGTH = 30000000;
+
 	public CustomWarcHTMLResponseRecord(WarcRecord o) {
 		super(o);
 	}
@@ -30,7 +32,6 @@ public class CustomWarcHTMLResponseRecord extends WarcHTMLResponseRecord {
 	}
 
 	public String getTitle() {
-
 		Pattern pattern = HTML_TITLE;
 		Matcher matcher = pattern.matcher(getRawRecord().getContentUTF8());
 		if (matcher.find()) {
@@ -52,9 +53,13 @@ public class CustomWarcHTMLResponseRecord extends WarcHTMLResponseRecord {
 	public String getContent() {
 		Pattern pattern = HTML_CONTENT;
 		Matcher matcher = pattern.matcher(getRawRecord().getContentUTF8());
-		if (matcher.find())
-			return matcher.group().trim();
-		return null;
-	}
 
+		if (getRawRecord().getContentUTF8().length() <= MAX_CONTENT_LENGTH
+				&& matcher.find()) {
+			return matcher.group().trim();
+		}
+		else {
+			return null;
+		}
+	}
 }

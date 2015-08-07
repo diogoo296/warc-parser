@@ -22,19 +22,26 @@ public class WarcHelper {
 		System.out.println();
 
 		WarcRecord thisWarcRecord;
+		Database db = new Database();
+		int count = 0;
 
 		while ((thisWarcRecord = WarcRecord.readNextWarcRecord(inStream)) != null) {
 			if (thisWarcRecord.getHeaderRecordType().equals("response")) {
+				db.insert( new WarcDocument(new CustomWarcHTMLResponseRecord(thisWarcRecord)) );
+
+				System.out.println("Register #" + (count+1) + " saved in DB!");
+				if( ++count == 1000 ) break;
 //				warcResponseList.add(new WarcDocument(new CustomWarcHTMLResponseRecord(thisWarcRecord)));
-				CustomWarcHTMLResponseRecord record = new CustomWarcHTMLResponseRecord(thisWarcRecord);
 //				if( !record.isOrgBr() && !record.isYoutube() ) {
-				System.out.println(new WarcDocument(record));
+//				System.out.println(new WarcDocument(new CustomWarcHTMLResponseRecord(thisWarcRecord)));
 //				}
 			}
 		}
 
+		db.disconnect();
+
 		System.out.println();
-		System.out.println( "All records read!" );
+		System.out.println("All records read!");
 
 		inStream.close();
 

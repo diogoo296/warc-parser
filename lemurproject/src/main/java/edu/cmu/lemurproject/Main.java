@@ -11,7 +11,7 @@ public class Main {
 			File[] files = folder.listFiles();
 
 			for (File file : files) {
-				System.out.println("Reading file " + file.getCanonicalPath());
+//				System.out.println("Reading file " + file.getCanonicalPath());
 				WarcHelper.readFile(file.getCanonicalPath());
 
 				/*
