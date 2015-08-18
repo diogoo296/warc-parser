@@ -61,7 +61,7 @@ public class Database {
   }
 
 	public void insert(WarcDocument doc) {
-		String sql = "INSERT INTO webpages (url, content, content_length" +
+		String sql = "INSERT INTO webpages (url, content, content_length," +
 			"content_type, server, title) VALUES (?, ?, ?, ?, ?, ?)";
 
     try {
