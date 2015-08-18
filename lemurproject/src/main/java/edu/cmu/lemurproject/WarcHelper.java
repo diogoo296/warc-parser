@@ -27,14 +27,15 @@ public class WarcHelper {
 
 		while ((thisWarcRecord = WarcRecord.readNextWarcRecord(inStream)) != null) {
 			if (thisWarcRecord.getHeaderRecordType().equals("response")) {
-				db.insert( new WarcDocument(new CustomWarcHTMLResponseRecord(thisWarcRecord)) );
-
-				System.out.println("Register #" + (count+1) + " saved in DB!");
-				if( ++count == 1000 ) break;
+				CustomWarcHTMLResponseRecord record = new CustomWarcHTMLResponseRecord(thisWarcRecord); 
 //				warcResponseList.add(new WarcDocument(new CustomWarcHTMLResponseRecord(thisWarcRecord)));
-//				if( !record.isOrgBr() && !record.isYoutube() ) {
-//				System.out.println(new WarcDocument(new CustomWarcHTMLResponseRecord(thisWarcRecord)));
-//				}
+				if (!record.isDNS()) {
+					WarcDocument doc = new WarcDocument(record);
+					db.insert(doc);
+					System.out.println("Webpage #" + (count+1) + ": " + doc.getURL());
+					if (++count == 1000) break;
+					//System.out.println(new WarcDocument(record));
+				}
 			}
 		}
 

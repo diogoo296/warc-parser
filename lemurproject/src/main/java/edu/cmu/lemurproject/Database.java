@@ -41,11 +41,14 @@ public class Database {
       stmt = conn.createStatement();
 			String sql = "CREATE TABLE IF NOT EXISTS webpages (" +
 				"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-				"url varchar," +
-				"content varchar," +
-				"doc_header varchar," +
-				"warc_header varchar," +
-				"title varchar)";
+				"url VARCHAR NOT NULL," +
+				"content VARCHAR," +
+//				"doc_header varchar," +
+//				"warc_header varchar," +
+				"content_length INTEGER," +
+				"content_type VARCHAR," +
+				"server VARCHAR," +
+				"title VARCHAR)";
 
       stmt.executeUpdate(sql);
 			stmt.close();
@@ -58,17 +61,20 @@ public class Database {
   }
 
 	public void insert(WarcDocument doc) {
-		String sql = "INSERT INTO webpages (url, content," +
-			"doc_header, warc_header, title) VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO webpages (url, content, content_length" +
+			"content_type, server, title) VALUES (?, ?, ?, ?, ?, ?)";
 
     try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString( 1, doc.getURL() );
 			pstmt.setString( 2, doc.getContent() );
-			pstmt.setString( 3, doc.getDocHeader() );
-			pstmt.setString( 4, doc.getWarcHeader() );
-			pstmt.setString( 5, doc.getTitle() );
+//			pstmt.setString( 3, doc.getDocHeader() );
+//			pstmt.setString( 4, doc.getWarcHeader() );
+			pstmt.setInt( 3, doc.getContentLength() );
+			pstmt.setString( 4, doc.getContentType() );
+			pstmt.setString( 5, doc.getServer() );
+			pstmt.setString( 6, doc.getTitle() );
 
       pstmt.executeUpdate();
 			pstmt.close();

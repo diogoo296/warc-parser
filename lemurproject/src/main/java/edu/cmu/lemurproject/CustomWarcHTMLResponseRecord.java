@@ -15,14 +15,14 @@ public class CustomWarcHTMLResponseRecord extends WarcHTMLResponseRecord {
 		super(o);
 	}
 
-	public boolean isOrgBr() {
+	public boolean isGovBr() {
 		Pattern pattern = Pattern.compile("(\\S)*.gov.br(\\S)*");
 		Matcher matcher = pattern.matcher(getTargetURI());
 		return matcher.find();
 	}
 
-	public boolean isYoutube() {
-		Pattern pattern = Pattern.compile("(\\S)*.youtube.com(\\S)*");
+	public boolean isDNS() {
+		Pattern pattern = Pattern.compile("dns:(\\S)*");
 		Matcher matcher = pattern.matcher(getTargetURI());
 		return matcher.find();
 	}
