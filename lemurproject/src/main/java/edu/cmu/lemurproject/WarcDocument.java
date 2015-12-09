@@ -22,14 +22,14 @@ public class WarcDocument {
 		String doc = "";
 
 		//		doc += "[ID] " + id + "\n";
-		doc += "[URL] "	+ url + "\n";
+		doc += url + "\n";
 		//		doc += "[CONTENT] " + content + "\n";
 		//doc += "[DOC HEADER] " + documentHeader + "\n";
 		//		doc += "[WARC HEADER] " + warcHeader + "\n";
 		//		doc += "[TITLE] " + title + "\n";
-		doc += "[CONTENT LENGTH] " + getContentLength() + "\n";
-		doc += "[CONTENT TYPE] " + getContentType() + "\n";
-		doc += "[SERVER] " + getServer() + "\n";
+		//doc += "[CONTENT LENGTH] " + getContentLength() + "\n";
+		//doc += "[CONTENT TYPE] " + getContentType() + "\n";
+		//doc += "[SERVER] " + getServer() + "\n";
 
 		return doc;
 	}
